@@ -1,0 +1,22 @@
+services:
+  dicom-anon:
+    build: .
+    image: dicom-anonymization-api:1.0
+    container_name: dicom-anonymization-api
+    ports:
+      - "8000:8000"
+    environment:
+      DICOM_ANON_DATA_DIR: /data
+      DICOM_ANON_WORKERS: "2"
+    volumes:
+      - dicom-anon-data:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8000/health').status==200 else 1)"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+    restart: unless-stopped
+
+volumes:
+  dicom-anon-data:

@@ -1,0 +1,21 @@
+{
+  "policy_version": "1.0",
+  "policy_id": "research-deid-basic-2026-01",
+  "uid_root": "2.25",
+  "keep_tags": ["PatientSex"],
+  "remove_tags": [],
+  "dates": {
+    "shift": true,
+    "jitter_max_days": 180,
+    "min_year": 1901
+  },
+  "occlusions": [
+    {
+      "study_uid": "1.2.3.400",
+      "series_uid": "1.2.3.400.1",
+      "sop_instance_uid": null,
+      "frames": null,
+      "box": {"x": 4, "y": 4, "width": 32, "height": 12, "fill": 0}
+    }
+  ]
+}
